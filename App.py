@@ -11,9 +11,8 @@ from Leer import leerNum
 import numpy as np
 import matplotlib
 
-import PIL
-from PIL import TkImage
-from PIL import Image
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 
 
 
