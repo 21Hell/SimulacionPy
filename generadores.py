@@ -15,6 +15,7 @@ def generadorNormal(sd,mu):
     i = 0
     for i in range(0,n-6,6):
         suma = numeros[i] + numeros[i+1] + numeros[i+2] + numeros[i+3] + numeros[i+4] + numeros[i+5]
+        print(suma)
         ni = np.append(ni, sd*suma+mu)
     return ni
 
@@ -34,18 +35,25 @@ def imprimirHistogramaArchivo(ni):
 def generadorPoisson(lamda):
     numeros = l
     ni = np.array([])
+    T = 1
+    N = 0
     i = 0
-    for i in range(0,n-6,6):
-        suma = numeros[i] + numeros[i+1] + numeros[i+2] + numeros[i+3] + numeros[i+4] + numeros[i+5]
-        ni = np.append(ni, -lamda*np.log(1-suma))
+    #euler number
+    e = 2.718281828459045
+    for i in range(0,n):
+        Tprima = T*(numeros[i])
+        print (Tprima)
+        if Tprima > e**(-lamda):
+            N = N + 1
+            T = Tprima
+        elif Tprima < e**(-lamda):
+            ni = np.append(ni, N)
     return ni
 
 
 def generadorExponencial(lamda):
-    numeros = l
-    ni = np.array([])
-    i = 0
-    for i in range(0,n-6,6):
-        suma = numeros[i] + numeros[i+1] + numeros[i+2] + numeros[i+3] + numeros[i+4] + numeros[i+5]
-        ni = np.append(ni, -np.log(1-suma)/lamda)
+
+
+
+
     return ni

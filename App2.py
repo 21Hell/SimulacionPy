@@ -130,7 +130,7 @@ while True:
         #generar numeros aleatorios con distribucion normal
         Norm = gnd.generadorNormal(6.5,40)
         #imprimir imagen de la distribucion normal
-        plot.plot(Norm)
+        plot.hist(Norm)
         plot.show()
 
     if event == 'Poisson':
@@ -138,5 +138,5 @@ while True:
         #generar numeros aleatorios con distribucion poisson
         Poi = gnd.generadorPoisson(6.5)
         #imprimir imagen de la distribucion poisson
-        plot.plot(Poi)
+        plot.hist(Poi, bins=20)
         plot.show()
