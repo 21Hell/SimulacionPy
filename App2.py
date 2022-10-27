@@ -76,6 +76,7 @@ tab4.Layout(layoutGeneradores)
 while True:
     event, values = window.read()
     valores = window.ReturnValuesList
+    numeros = leerNum("numeros_aleatorios.csv")
     if event in (None, 'Exit'):
         break
     if event == 'tab1':
@@ -89,7 +90,7 @@ while True:
     
     if event == 'Generar':
         #fetch the values from the input fields
-
+        
         x0 = int(valores[0])
         k = int(valores[1])
         g = int(valores[2])
@@ -103,10 +104,10 @@ while True:
         #call the function to generate the random numbers
         s = gn.generar(x0, k, g)
         print(s)
-
+        numeros = leerNum("numeros_aleatorios.csv")
     if event == 'Pruebas':
         #leer los numeros generados y hacer las pruebas
-        ri = leerNum("numeros_aleatorios.csv")
+        ri = numeros
         s = gn.pruebas()
         #mostrar s en un text box
         sg.popup(s)
@@ -126,7 +127,7 @@ while True:
         sg.popup('Intervalo de confianza', Intervalo)
         
     if event == 'Normal':
-        ri = leerNum("numeros_aleatorios.csv")
+        ri = numeros
         #generar numeros aleatorios con distribucion normal
         Norm = gnd.generadorNormal(6.5,40)
         #imprimir imagen de la distribucion normal
@@ -134,9 +135,9 @@ while True:
         plot.show()
 
     if event == 'Poisson':
-        ri = leerNum("numeros_aleatorios.csv")
+        ri = numeros
         #generar numeros aleatorios con distribucion poisson
         Poi = gnd.generadorPoisson(6.5)
         #imprimir imagen de la distribucion poisson
-        plot.hist(Poi, bins=20)
+        plot.hist(Poi)
         plot.show()

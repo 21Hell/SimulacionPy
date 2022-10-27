@@ -33,27 +33,20 @@ def imprimirHistogramaArchivo(ni):
 
 
 def generadorPoisson(lamda):
-    numeros = l
-    ni = np.array([])
+    ni = l
     T = 1
     N = 0
     i = 0
+    Tprima = T*ni[i]
     #euler number
     e = 2.718281828459045
-    for i in range(0,n):
-        Tprima = T*(numeros[i])
-        print (Tprima)
-        if Tprima > e**(-lamda):
+    while i < n:
+        if Tprima < np.exp(-lamda):
             N = N + 1
-            T = Tprima
-        elif Tprima < e**(-lamda):
+        else:
             ni = np.append(ni, N)
+            N = 0
+            Tprima = Tprima*ni[i+1]
+        i = i + 1
     return ni
 
-
-def generadorExponencial(lamda):
-
-
-
-
-    return ni
