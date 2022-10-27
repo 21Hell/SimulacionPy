@@ -97,4 +97,3 @@ def prueba_medias():
     else:
         return "Prueba Medias Se rechaza la hipotesis"
 
-

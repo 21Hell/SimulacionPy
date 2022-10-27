@@ -3,10 +3,10 @@
 import numpy as np
 
 def leerNum(file):
-    out = np.array([])
+    out = []
     with open(file, 'r') as f:
         for linea in f:
-            out = np.append(out, float(linea))
+            out.append(float(linea))
     return out
 
 def leerString(file):

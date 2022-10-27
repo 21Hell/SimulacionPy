@@ -5,9 +5,10 @@ from Leer import leerNum
 import generadorNumeros as gn
 import Dados as d
 import numpy as np
-import generadores as gnd
+import generadorVariables as gnd
 import matplotlib as plt
 import matplotlib.pyplot as plot
+import pandas as pd
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
@@ -76,7 +77,7 @@ tab4.Layout(layoutGeneradores)
 while True:
     event, values = window.read()
     valores = window.ReturnValuesList
-    numeros = leerNum("numeros_aleatorios.csv")
+    ri = leerNum("numeros_aleatorios.csv")
     if event in (None, 'Exit'):
         break
     if event == 'tab1':
@@ -90,7 +91,7 @@ while True:
     
     if event == 'Generar':
         #fetch the values from the input fields
-        
+
         x0 = int(valores[0])
         k = int(valores[1])
         g = int(valores[2])
@@ -103,11 +104,12 @@ while True:
 
         #call the function to generate the random numbers
         s = gn.generar(x0, k, g)
+        ri = leerNum("numeros_aleatorios.csv")
         print(s)
-        numeros = leerNum("numeros_aleatorios.csv")
+
     if event == 'Pruebas':
         #leer los numeros generados y hacer las pruebas
-        ri = numeros
+        ri = leerNum("numeros_aleatorios.csv")
         s = gn.pruebas()
         #mostrar s en un text box
         sg.popup(s)
@@ -118,26 +120,28 @@ while True:
         dados = d.simular_tiradas_dados(ri)
         #mostrar en una grafica los resultados
         #popup que diga que se generaron las tiradas de dados
-        sg.popup('Se generaron las tiradas de dados')
+        dados2 = ['Dados: ', dados[1]]
+        table = pd.DataFrame(dados2)
         #mostrar los resultados en una tabla
-        sg.popup(dados)
+        sg.popup(table, title="Tabla")
         #indicar en un popup el intervalo de confianza con un titulo
         Intervalo = d.generar_intervalo_confianza_tiradas(d.obtener_medias_tiradas(dados))
-
-        sg.popup('Intervalo de confianza', Intervalo)
+        Media = np.mean(d.obtener_medias_tiradas(dados))
+        sg.popup('Intervalo de confianza', Intervalo,'Media', Media , title="Intervalo de confianza")
         
     if event == 'Normal':
-        ri = numeros
+        ri = leerNum("numeros_aleatorios.csv")
+        n = []
         #generar numeros aleatorios con distribucion normal
-        Norm = gnd.generadorNormal(6.5,40)
-        #imprimir imagen de la distribucion normal
-        plot.hist(Norm)
+        n = [gnd.generadorNormal(6.5,40) for i in range(200)]
+        #mostrar en una grafica los resultados
+        plot.hist(n, bins=10)
         plot.show()
 
     if event == 'Poisson':
-        ri = numeros
+        ri = leerNum("numeros_aleatorios.csv")
         #generar numeros aleatorios con distribucion poisson
-        Poi = gnd.generadorPoisson(6.5)
+        Poi = [gnd.gPoisson(1) for i in range(100)]
         #imprimir imagen de la distribucion poisson
         plot.hist(Poi)
         plot.show()

@@ -18,7 +18,10 @@ def obtener_c(m):
 def generar_numeros_aleatorios(x0, c, g, m, n):
     numeros_aleatorios = []
     for i in range(n):
-        x0 = (g * x0 + c) % m
+        if i == 0:
+            x0 = 6
+        else:
+            x0 = (g * x0 + c) % m
         numeros_aleatorios.append(x0)
     return numeros_aleatorios
 
