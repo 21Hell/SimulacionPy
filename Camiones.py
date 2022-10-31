@@ -5,7 +5,7 @@ import datetime
 
 
 # Ejercicio camiones
-l = leerNum('Numeros.csv') # Lista de numeros
+l = leerNum('numeros_aleatorios.csv') # Lista de numeros
 t = open("tiCamiones.csv", "r")
 with open("Camiones.csv", "w") as f:
     pass

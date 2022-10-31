@@ -133,7 +133,7 @@ while True:
         ri = leerNum("numeros_aleatorios.csv")
         n = []
         #generar numeros aleatorios con distribucion normal
-        n = [gnd.generadorNormal(6.5,40) for i in range(200)]
+        n = [gnd.gNormal(6.5,40) for i in range(200)]
         #mostrar en una grafica los resultados
         plot.hist(n, bins=10)
         plot.show()
